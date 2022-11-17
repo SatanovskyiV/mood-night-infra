@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back
+  template:
+    metadata:
+      labels:
+        app: back
+    spec:
+      containers:
+        - name: back
+          image: vitaliisatanovskyi/mood-night-back
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-srv
+spec:
+  selector:
+    app: back
+  type: ClusterIP
+  ports:
+    - name: back
+      protocol: TCP
+      port: 4000
+      targetPort: 4000
