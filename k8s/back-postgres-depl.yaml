@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-postgres-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app:  back-postgres
+  template:
+    metadata:
+      labels:
+        app:  back-postgres
+    spec:
+      containers:
+        - name: back-postgres
+          image:  postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "12345"
+            - name: POSTGRES_DB
+              value: "mood-night"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-postgres-srv
+spec:
+  selector:
+    app:  back-postgres
+  ports:
+    - name: db
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
+
