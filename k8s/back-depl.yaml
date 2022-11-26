@@ -15,6 +15,9 @@ spec:
       containers:
         - name: back
           image: vitaliisatanovskyi/mood-night-back
+          envFrom:
+            - configMapRef:
+                name: postgres-configmap
 ---
 apiVersion: v1
 kind: Service
