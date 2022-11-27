@@ -15,7 +15,7 @@ build:
       sync:
         manual:
           - src: '**/*.ts'
-            dest: '../'
+            dest: .
     - image: vitaliisatanovskyi/mood-night-client
       context: ../mood-night-client
       docker:
@@ -23,4 +23,4 @@ build:
       sync:
         manual:
           - src: '**/*.js'
-            dest: '../'
+            dest: .

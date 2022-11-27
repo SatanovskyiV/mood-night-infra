@@ -12,6 +12,10 @@ spec:
       labels:
         app:  back-postgres
     spec:
+      volumes:
+        - name: mood-night-db
+          persistentVolumeClaim:
+            claimName: mood-night-pv-claim
       containers:
         - name: back-postgres
           image: postgres:10.1
@@ -20,14 +24,12 @@ spec:
             - containerPort: 5432
           envFrom:
             - configMapRef:
-                name: postgres-configmap
+                name: mood-night-postgres-configmap
+            - secretRef:
+                name: mood-night-secret
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgredb
-      volumes:
-        - name: postgredb
-          persistentVolumeClaim:
-            claimName: postgres-pv-claim
+            - name: mood-night-db
+              mountPath: /var/lib/postgresql/data
 ---
 # apiVersion: v1
 # kind: Service

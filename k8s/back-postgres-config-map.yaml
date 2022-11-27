@@ -1,11 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-    name: postgres-configmap
+    name: mood-night-postgres-configmap
     labels:
         app: back-postgres
 data:
     POSTGRES_HOST: back-postgres-srv
-    POSTGRES_DB: postgresdb
-    POSTGRES_USER: admin
-    POSTGRES_PASSWORD: test123
+    POSTGRES_DB: mood-night-db

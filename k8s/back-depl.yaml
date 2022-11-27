@@ -17,7 +17,9 @@ spec:
           image: vitaliisatanovskyi/mood-night-back
           envFrom:
             - configMapRef:
-                name: postgres-configmap
+                name: mood-night-postgres-configmap
+            - secretRef:
+                name: mood-night-secret
 ---
 apiVersion: v1
 kind: Service
